@@ -1,5 +1,4 @@
 const createShowCard = (show) => {
-    console.log("NUEVO: ",show);
     const card = document.createElement("div");
     card.classList.add("show-card");
 
@@ -11,8 +10,11 @@ const createShowCard = (show) => {
     name.textContent = show.name;
 
     const streaming = document.createElement("p");
-    streaming.classList.add("show-streaming");
-    streaming.textContent = show.network.name;
+    if (show.network != null) {
+        streaming.classList.add("show-streaming");
+        streaming.textContent = show.network.name;
+    }
+    
 
     const genresDiv = document.createElement("div");
     genresDiv.classList.add ("show-genres");
@@ -25,7 +27,7 @@ const createShowCard = (show) => {
     });
 
     infoDiv.appendChild(name);
-    infoDiv.appendChild(streaming);
+    if (show.network != null) {infoDiv.appendChild(streaming);}
     infoDiv.appendChild(genresDiv);
 
     bannerImg = show.image;
